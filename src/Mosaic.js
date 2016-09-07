@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-  iterateRowColumns,
+  getRowColumnIterator,
   getCanvasContext,
   getImageObj,
   countColumnsAndRows,
@@ -30,26 +30,24 @@ class Mosaic extends Component {
 
   componentDidUpdate() {
     if (!this.state.analyseComplete) {
-      console.log ('component did update?');
       const imageObj = getImageObj(this.props.src);
-
       const {width, height} = imageObj;
-
       const context = getCanvasContext(width, height);
-
       const {columns, rows} = countColumnsAndRows(width, height, this.props.tileSize, this.props.tileSize);
 
       context.drawImage(imageObj, 0, 0, width, height);
-      const len = rows*columns;
+
       let tileList = [];
 
       const avgColours = getAverageRGB(imageObj, this.props.tileSize, this.props.tileSize);
+
+      const iterateRowColumns = getRowColumnIterator();
 
       iterateRowColumns
         .send({columns, rows})
         .on('message', ({type, index}) => {
           tileList.push(`${decimalToHex(avgColours[(index * 4)])}${decimalToHex(avgColours[(index * 4) + 1])}${decimalToHex(avgColours[(index * 4) + 2])}`);
-          if (tileList.length === len) {
+          if (tileList.length === rows*columns) {
             this.setState({
               analyseComplete: true,
               tileList: tileList,
@@ -58,6 +56,7 @@ class Mosaic extends Component {
               width: width,
               height: height
             });
+            iterateRowColumns.kill();
           }
         });
     }

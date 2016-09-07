@@ -1,6 +1,6 @@
 import { spawn } from 'threads';
 
-const iterateRowColumns = spawn(({columns, rows}, done) => {
+const getRowColumnIterator = () => spawn(({columns, rows}, done) => {
   let rowIndex = -1 , colIndex = -1, index = 0;
   while(rowIndex++ !== rows - 1) {
     colIndex = -1;
@@ -52,7 +52,7 @@ const getColoursFromPixel = (x, y, w, h, context) => {
 };
 
 export {
-  iterateRowColumns,
+  getRowColumnIterator,
   getCanvasContext,
   getImageObj,
   countColumnsAndRows,
