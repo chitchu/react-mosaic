@@ -1,21 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import InputFileToDataURL from './InputFileToDataURL';
+import Mosaic from './Mosaic';
+// import BlockingTest from './BlockingTest';
 
 class App extends Component {
-  render() {
+
+  state = {
+    image: '',
+    tileSize: 30,
+    width: 633,
+    height: 412
+  }
+
+  handleFileChange = image => {
+    this.setState({
+      image
+    });
+  }
+
+  handleWidthChange = ({target: {value}}) => {
+    this.setState({
+      width: value
+    });
+  };
+
+  handleHeightChange = ({target: {value}}) => {
+    this.setState({
+      height: value
+    });
+  };
+
+  handleTileSizeChange = ({target: {value}}) => {
+    this.setState({
+      tileSize: value
+    });
+  }
+
+  render () {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <InputFileToDataURL onChange={this.handleFileChange} />
+        <input type='text' value={this.state.tileSize} onChange={this.handleTileSizeChange} />
+        <Mosaic src={this.state.image} width={this.state.width} height={this.state.height}
+          tileSize={this.state.tileSize} style={{display:'block'}}/>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export {
+  App as default
+}
