@@ -1,7 +1,15 @@
 {
   "name": "react-mosaic",
   "version": "0.0.1",
+  "description": "React component",
   "private": true,
+  "author": "Vicente Jr Yuchitcho",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "react-component",
+    "mosaic"
+  ],
   "devDependencies": {
     "autoprefixer": "6.3.7",
     "babel-core": "6.11.4",
@@ -41,11 +49,13 @@
     "url-loader": "0.5.7",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1",
-    "whatwg-fetch": "1.0.0"
+    "whatwg-fetch": "1.0.0",
+    "react-dom": "^15.2.1"
   },
   "dependencies": {
+    "lodash": "^4.15.0",
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "threads": "^0.7.0"
   },
   "scripts": {
     "start": "node ./scripts/start.js",
