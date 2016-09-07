@@ -15,15 +15,14 @@ if (!publicPath.endsWith('/')) {
 
 module.exports = {
   bail: true,
-  devtool: 'source-map',
   entry: [
     require.resolve('./polyfills'),
-    path.join(paths.appSrc, 'index')
+    path.join(paths.appSrc, 'app')
   ],
   output: {
     path: paths.appBuild,
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    filename: '[name].js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
     publicPath: publicPath
   },
   resolve: {
@@ -104,7 +103,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
-      favicon: paths.appFavicon,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
