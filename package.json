@@ -1,13 +1,13 @@
 {
   "name": "react-mosaic",
   "version": "0.0.1",
-  "description": "React component",
-  "private": true,
+  "description": "React component that generates mosaic from the given image source.",
   "author": "Vicente Jr Yuchitcho",
   "license": "MIT",
   "keywords": [
     "react",
     "react-component",
+    "components",
     "mosaic"
   ],
   "devDependencies": {
@@ -59,9 +59,11 @@
   },
   "scripts": {
     "start": "node ./scripts/start.js",
-    "build": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js",
+    "prepublish": "node ./scripts/build.js"
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"
-  }
+  },
+  "main": "build/main.js"
 }
