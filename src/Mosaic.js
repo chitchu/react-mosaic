@@ -29,7 +29,7 @@ class Mosaic extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.state.analyseComplete) {
+    if (!this.state.analyseComplete && this.props.src.trim() !== '') {
       const imageObj = getImageObj(this.props.src);
       const {width, height} = imageObj;
       const context = getCanvasContext(width, height);
