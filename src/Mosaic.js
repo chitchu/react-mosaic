@@ -20,12 +20,10 @@ class Mosaic extends Component {
   }
 
   componentWillReceiveProps() {
-    // if (nextSrc !== src) {
-      this.setState({
-        analyseComplete: false,
-        tileList: []
-      });
-    // }
+    this.setState({
+      analyseComplete: false,
+      tileList: []
+    });
   }
 
   componentDidUpdate() {
