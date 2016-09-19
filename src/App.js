@@ -34,7 +34,7 @@ class App extends Component {
         <InputFileToDataURL onChange={this.handleFileChange} />
         <input type='text' value={this.state.previewTileSize} onChange={this.handleTileSizeChange} />
         <button onClick={this.handleApply}>Apply</button>
-        <Mosaic src={this.state.image} tileSize={this.state.tileSize}/>
+        <Mosaic src={this.state.image} tileSize={this.state.tileSize} width={1024} height={768}/>
       </div>
     )
   }

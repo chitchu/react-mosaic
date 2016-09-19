@@ -60,7 +60,7 @@ class Mosaic extends Component {
     }
   }
   render() {
-    const { tileSize } = this.props;
+    const { tileSize, width, height } = this.props;
     const { columns } = this.state;
 
     const _tiles = (this.state.analyseComplete) ? this.state.tileList.map( (hex, index) => {
@@ -70,7 +70,7 @@ class Mosaic extends Component {
     }) : '';
 
     return (
-      <svg width={this.state.width} height={this.state.height} viewBox={`0 0 ${this.state.width} ${this.state.height}`} xmlns="http://www.w3.org/2000/svg" style={this.props.style}>
+      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" style={this.props.style}>
          {_tiles}
       </svg>
     );
