@@ -61,6 +61,10 @@ class Mosaic extends Component {
   }
   render() {
     const { tileSize, width, height } = this.props;
+
+    if (tileSize <= 1) {
+      throw new Error('tileSize must be greater than 1.');
+    }
     const { columns } = this.state;
 
     const _tiles = (this.state.analyseComplete) ? this.state.tileList.map( (hex, index) => {
