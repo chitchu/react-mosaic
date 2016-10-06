@@ -55,6 +55,7 @@
   "dependencies": {
     "lodash": "^4.15.0",
     "react": "^15.2.1",
+    "react-art": "^0.15.1",
     "threads": "^0.7.0"
   },
   "scripts": {
