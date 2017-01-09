@@ -1,15 +1,34 @@
 const path = require('path');
+// const webpack = require('webpack');
 
 const config = {
-  entry: `./src/Demo.js`,
+  entry: {
+    app: [path.resolve(process.cwd(), `demo/index.js`)]
+  },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: `Demo.bundle.js`
+    path: path.resolve(process.cwd(), `demo`),
+    filename: `bundle.js`,
+    publicPath: '/',
+    pathinfo: false
   },
   module:{
     rules: [
-      {test: /\.(js|jsx)$/, use: 'babel-loader'}
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      }
     ]
+  },
+  devServer: {
+    contentBase: 'demo/',
+    inline: true,
+    open: true,
+    noInfo: true,
+    quiet: true
+  },
+  performance: {
+    hints: false
   }
 };
 

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import InputFileToDataURL from './InputFileToDataURL';
-import Mosaic from './Mosaic';
+import Mosaic from '../src/Mosaic';
 
 class App extends Component {
 
   state = {
     image: '',
-    tileSize: 30,
-    previewTileSize: 30
+    tileSize: 16
   }
 
   handleFileChange = image => {
@@ -16,23 +15,19 @@ class App extends Component {
     });
   }
 
-  handleTileSizeChange = ({target: {value}}) => {
-    this.setState({
-      previewTileSize: value
-    })
+  handleApply = () => {
+    this.setState({tileSize: this.tileSize.value});
   }
 
-  handleApply = () => {
-    this.setState({
-      tileSize: this.state.previewTileSize
-    });
+  componentDidMount() {
+    this.tileSize.value = this.state.tileSize;
   }
 
   render () {
     return (
       <div>
         <InputFileToDataURL onChange={this.handleFileChange} />
-        <input type='text' value={this.state.previewTileSize} onChange={this.handleTileSizeChange} />
+        <input type='text' ref={input => this.tileSize = input} />
         <button onClick={this.handleApply}>Apply</button>
         <Mosaic src={this.state.image} tileSize={this.state.tileSize} width={1024} height={768}/>
       </div>
