@@ -1,10 +1,14 @@
 {
   "name": "react-mosaic",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React component that generates mosaic from the given image source.",
   "author": "Vicente Jr Yuchitcho",
   "license": "MIT",
   "homepage": "https://github.com/chitchu/react-mosaic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chitchu/react-mosaic"
+  },
   "bugs": "https://github.com/chitchu/react-mosaic/issues",
   "keywords": [
     "react",
