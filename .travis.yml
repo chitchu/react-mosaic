@@ -1,6 +1,8 @@
 language: node_js
-sudo: false
 deploy:
   provider: npm
+  email: chitchu@gmail.com
   api_key:
     secure: Jjw2+VlDbOEP9sH83kiuEHNygnXwdfnaQMj1YNPGF2LjnC/eFmytotH9UK9zFKa+23fOH3fA/7mkNBwo2ltuPmVem9qe/rPaLRJAb7RSe4OfTTexb1NmwNfJELY2fmNWa909yZR/yvdYJwBq8BuFmUi12WobslemiEE72cDMHyFrbYQCA3ZKgHdUKDV58IK6uEVfEBuMtkrJc/zo48tdFvUPA4COd6fK1hivFc/jqvusrLUReRxT1f9d9nkm8MCBg1yPOsbGma4PCK7P6YqnneZJOhX6QnzUR1GrnGs698RYqdsYKWZrRQmJeN1RlvD1s4dyOEou65gS0wXVCjv85bgtnOao1A7HX2migkzFoO72k93heBAVnjJ9PGS93kZSzNCNZ08bGYDhEAXH6zbe2AI/n/4ezcHxTfkA6EYOvOhR7r3SKvb0/SudXL0xRoRFb+Rs+qK8tfqGHoHg10dWLPnYqZ6otVNfoBGz2Vx4ZbJQersWNiKTn2Zd9CKxri21bEBhOuJGVjtbRCuJeLuf+rK20alOMEhRBy5BisE7f/iEmvuSBaQja+YPaY/Z61vRCYkj6/dL0ZbREr4bepsJ2S9du6dzUWaMcqbWhOqrlhlfs6m0D/AGe5dzzefeknY6pdC5ecCIt4CvwGf6R4Da+xZgDRxjfia/nd7uirF0Ras=
+  on:
+    tags: true
