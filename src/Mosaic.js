@@ -68,9 +68,15 @@ class Mosaic extends Component {
     const { columns } = this.state;
 
     const _tiles = (this.state.analyseComplete) ? this.state.tileList.map( (hex, index) => {
-      const _x = ((index >= columns) ? index%columns : index) * tileSize;
-      const _y = Math.floor( index / columns ) * tileSize;
-      return (<MosaicTile x={_x} y={_y} key={index} tileSize={tileSize} bgColour={`#${hex}`} />);
+      const x = ((index >= columns) ? index%columns : index) * tileSize;
+      const y = Math.floor( index / columns ) * tileSize;
+
+      if (this.props.tileRenderer && typeof this.props.tileRenderer === 'function') {
+        return this.props.tileRenderer({x, y, fill: `#${hex}`, key: index});
+      } else {
+        return (<MosaicTile x={x} y={y} key={index} tileSize={tileSize} bgColour={`#${hex}`} />);
+      }
+
     }) : '';
 
     return (

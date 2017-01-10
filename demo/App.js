@@ -23,13 +23,17 @@ class App extends Component {
     this.tileSize.value = this.state.tileSize;
   }
 
+  handleTileRenderer = ({x, y, ...rest}) => {
+    return <circle cx={x} cy={y} r={this.state.tileSize / 2} {...rest} />
+  }
+
   render () {
     return (
       <div>
         <InputFileToDataURL onChange={this.handleFileChange} />
         <input type='text' ref={input => this.tileSize = input} />
         <button onClick={this.handleApply}>Apply</button>
-        <Mosaic src={this.state.image} tileSize={this.state.tileSize} width={1024} height={768}/>
+        <Mosaic src={this.state.image} tileSize={this.state.tileSize} width={1024} height={768} tileRenderer={this.handleTileRenderer}/>
       </div>
     )
   }
