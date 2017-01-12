@@ -3,7 +3,7 @@
 Generate mosaic images in react.
 
 [![Build Status](https://travis-ci.org/chitchu/react-mosaic.svg?branch=master)](https://travis-ci.org/chitchu/react-mosaic)
-[![npm version](https://badge.fury.io/js/react-mosaic.svg)](https://badge.fury.io/js/react-mosaic)
+[![npm version](https://badge.fury.io/js/react-mosaic.svg)](https://www.npmjs.com/package/react-mosaic)
 
 ## Getting started
 
