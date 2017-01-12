@@ -18,9 +18,9 @@ const imageSource = 'data:image/png;base64, ...'; //requires base64 encoded imag
 
 // If you don't pass a `tileRenderer` function the
 // component will render each tile with a boring box.
-const tileRenderer = (props) => {
-  return <circle cx={props.x} cy={props.y} r={6} fill={props.fill} key={props.key} />
-};
+const tileRenderer = props => (
+  <circle cx={props.x} cy={props.y} r={6} fill={props.fill} key={props.key} /> 
+);
 
 const App = () => (
   <Mosaic src={imageSource} tileSize="12" width="800" height="450" tileRenderer={tileRenderer} />
