@@ -3,6 +3,7 @@
 Generate mosaic images in react.
 
 [![Build Status](https://travis-ci.org/chitchu/react-mosaic.svg?branch=master)](https://travis-ci.org/chitchu/react-mosaic)
+[![npm version](https://badge.fury.io/js/react-mosaic.svg)](https://badge.fury.io/js/react-mosaic)
 
 ## Getting started
 
@@ -19,7 +20,7 @@ const imageSource = 'data:image/png;base64, ...'; //requires base64 encoded imag
 // If you don't pass a `tileRenderer` function the
 // component will render each tile with a boring box.
 const tileRenderer = props => (
-  <circle cx={props.x} cy={props.y} r={6} fill={props.fill} key={props.key} /> 
+  <circle cx={props.x} cy={props.y} r={6} fill={props.fill} key={props.key} />
 );
 
 const App = () => (
