@@ -31,6 +31,8 @@
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
     "enzyme": "^2.7.0",
+    "gh-pages": "^0.12.0",
+    "html-webpack-plugin": "^2.26.0",
     "jest": "^18.1.0",
     "normalize.css": "^5.0.0",
     "react-addons-test-utils": "^15.4.2",
@@ -49,7 +51,8 @@
     "demo": "webpack-dev-server --config demo/webpack.config.js",
     "build": "webpack --config demo/webpack.config.js",
     "prepublish": "mkdir -p dist && babel src --out-dir dist",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "NODE_ENV=production webpack --optimize-minimize --config webpack.prod.config.js && gh-pages -d gh-page"
   },
   "main": "dist/Mosaic.js"
 }
