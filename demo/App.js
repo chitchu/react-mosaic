@@ -62,6 +62,8 @@ class App extends Component {
       mosaicWidth: window.innerWidth,
       mosaicHeight: window.innerHeight
     });
+    // starting image
+    this.fetchImage('https://drscdn.500px.org/photo/99973913/q%3D80_m%3D2000/b358f88dd9ce890b7ac34ccaefca30a4');
   }
 
   // wait 500ms after the user enter the url

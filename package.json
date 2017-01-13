@@ -7,7 +7,7 @@
   "homepage": "https://github.com/chitchu/react-mosaic",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chitchu/react-mosaic"
+    "url": "git@github.com:chitchu/react-mosaic.git"
   },
   "bugs": "https://github.com/chitchu/react-mosaic/issues",
   "keywords": [
