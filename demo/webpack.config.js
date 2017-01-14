@@ -1,5 +1,5 @@
 const path = require('path');
-// const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   entry: {
@@ -8,7 +8,6 @@ const config = {
   output: {
     path: path.resolve(process.cwd(), `demo`),
     filename: `bundle.js`,
-    publicPath: '/',
     pathinfo: false
   },
   module:{
@@ -24,6 +23,12 @@ const config = {
       }
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: path.resolve(process.cwd(), 'demo', 'index.html')
+    })
+  ],
   devServer: {
     contentBase: 'demo/',
     inline: true,

@@ -11,7 +11,6 @@ const config = {
   output: {
     path: path.resolve(process.cwd(), `gh-page`),
     filename: `bundle.js`,
-    publicPath: '/',
     pathinfo: false
   },
   module:{
