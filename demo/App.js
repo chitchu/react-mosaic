@@ -104,7 +104,7 @@ class App extends Component {
     return (
       <this.Container>
         <this.Input type="text" placeholder="Enter image url" autoFocus onChange={this.handleOnChange} />
-        <Mosaic src={this.state.image} tileSize={this.state.tileSize} width={this.state.mosaicWidth} height={this.state.mosaicHeight} tileRenderer={this.handleTileRenderer} style={{position:'absolute', zIndex:-1}}/>
+        <Mosaic src={this.state.image} tileSize={this.state.tileSize} width={this.state.mosaicWidth} height={this.state.mosaicHeight} tileRenderer={this.handleTileRenderer} style={{position:'absolute', zIndex:-1, left: 0, top: 0}}/>
       </this.Container>
     )
   }
