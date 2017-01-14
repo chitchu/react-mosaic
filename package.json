@@ -1,6 +1,6 @@
 {
   "name": "react-mosaic",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "React component that generates mosaic from the given image source.",
   "author": "Vicente Jr Yuchitcho",
   "license": "MIT",
