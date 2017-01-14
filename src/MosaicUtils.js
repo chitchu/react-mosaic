@@ -33,10 +33,14 @@ const getCanvasContext = (viewportWidth, viewportHeight) => {
   return context;
 };
 
-const getImageObj = image => {
-  const imageObj = new Image();
-  imageObj.src = image;
-  return imageObj;
+const getImageObj = (image, callback) => {
+  return new Promise((resolve, reject) => {
+    const imageObj = new Image();
+    imageObj.onload = evt => {
+      resolve(imageObj);
+    }
+    imageObj.src = image;
+  });
 };
 
 const countColumnsAndRows = (viewportWidth, viewportHeight, tileWidth, tileHeight) => {

@@ -28,34 +28,36 @@ class Mosaic extends Component {
 
   componentDidUpdate() {
     if (!this.state.analyseComplete && this.props.src.trim() !== '') {
-      const imageObj = getImageObj(this.props.src);
-      const {width, height} = imageObj;
-      const context = getCanvasContext(width, height);
-      const {columns, rows} = countColumnsAndRows(width, height, this.props.tileSize, this.props.tileSize);
+      getImageObj(this.props.src)
+        .then( imageObj => {
+          const {width, height} = imageObj;
+          const context = getCanvasContext(width, height);
+          const {columns, rows} = countColumnsAndRows(width, height, this.props.tileSize, this.props.tileSize);
 
-      context.drawImage(imageObj, 0, 0, width, height);
+          context.drawImage(imageObj, 0, 0, width, height);
 
-      let tileList = [];
+          let tileList = [];
 
-      const avgColours = getAverageRGB(imageObj, this.props.tileSize, this.props.tileSize);
+          const avgColours = getAverageRGB(imageObj, this.props.tileSize, this.props.tileSize);
 
-      const iterateRowColumns = getRowColumnIterator();
+          const iterateRowColumns = getRowColumnIterator();
 
-      iterateRowColumns
-        .send({columns, rows})
-        .on('message', ({type, index}) => {
-          tileList.push(`${decimalToHex(avgColours[(index * 4)])}${decimalToHex(avgColours[(index * 4) + 1])}${decimalToHex(avgColours[(index * 4) + 2])}`);
-          if (tileList.length === rows*columns) {
-            this.setState({
-              analyseComplete: true,
-              tileList: tileList,
-              columns,
-              rows,
-              width: width,
-              height: height
+          iterateRowColumns
+            .send({columns, rows})
+            .on('message', ({type, index}) => {
+              tileList.push(`${decimalToHex(avgColours[(index * 4)])}${decimalToHex(avgColours[(index * 4) + 1])}${decimalToHex(avgColours[(index * 4) + 2])}`);
+              if (tileList.length === rows*columns) {
+                this.setState({
+                  analyseComplete: true,
+                  tileList: tileList,
+                  columns,
+                  rows,
+                  width: width,
+                  height: height
+                });
+                iterateRowColumns.kill();
+              }
             });
-            iterateRowColumns.kill();
-          }
         });
     }
   }
