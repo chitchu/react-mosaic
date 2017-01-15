@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {
   getRowColumnIterator,
   getCanvasContext,
@@ -19,6 +19,13 @@ class Mosaic extends Component {
     height: 0
   }
 
+  static propTypes = {
+    src: PropTypes.string.isRequired,
+    tileSize: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
+  }
+
   componentWillReceiveProps() {
     this.setState({
       analyseComplete: false,
@@ -27,8 +34,8 @@ class Mosaic extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.state.analyseComplete && this.props.src.trim() !== '') {
-      getImageObj(this.props.src)
+    if (!this.state.analyseComplete) {
+      getImageObj(this.props.src || '')
         .then( imageObj => {
           const {width, height} = imageObj;
           const context = getCanvasContext(width, height);
