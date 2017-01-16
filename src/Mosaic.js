@@ -23,7 +23,9 @@ class Mosaic extends Component {
     src: PropTypes.string.isRequired,
     tileSize: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired
+    height: PropTypes.number.isRequired,
+    onProgress: PropTypes.function,
+    tileRenderer: PropTypes.function
   }
 
   componentWillReceiveProps() {
@@ -35,8 +37,10 @@ class Mosaic extends Component {
 
   componentDidUpdate() {
     if (!this.state.analyseComplete) {
+      console.log('start loading');
       getImageObj(this.props.src || '')
         .then( imageObj => {
+
           const {width, height} = imageObj;
           const context = getCanvasContext(width, height);
           const {columns, rows} = countColumnsAndRows(width, height, this.props.tileSize, this.props.tileSize);
@@ -53,6 +57,9 @@ class Mosaic extends Component {
             .send({columns, rows})
             .on('message', ({type, index}) => {
               tileList.push(`${decimalToHex(avgColours[(index * 4)])}${decimalToHex(avgColours[(index * 4) + 1])}${decimalToHex(avgColours[(index * 4) + 2])}`);
+              if (typeof this.props.onProgress === 'function') {
+                this.props.onProgress({total: rows*columns, current: tileList.length});
+              }
               if (tileList.length === rows*columns) {
                 this.setState({
                   analyseComplete: true,
