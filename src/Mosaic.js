@@ -81,7 +81,7 @@ class Mosaic extends Component {
       const y = Math.floor( index / columns ) * tileSize;
 
       if (this.props.tileRenderer && typeof this.props.tileRenderer === 'function') {
-        return this.props.tileRenderer({x, y, fill: `#${hex}`, key: index});
+        return this.props.tileRenderer({x, y, tileSize, fill: `#${hex}`, key: index});
       } else {
         return (<MosaicTile x={x} y={y} key={index} tileSize={tileSize} bgColour={`#${hex}`} />);
       }
