@@ -24,8 +24,8 @@ class Mosaic extends Component {
     tileSize: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
-    onProgress: PropTypes.function,
-    tileRenderer: PropTypes.function
+    onProgress: PropTypes.func,
+    tileRenderer: PropTypes.func
   }
 
   componentWillReceiveProps() {
@@ -37,7 +37,6 @@ class Mosaic extends Component {
 
   componentDidUpdate() {
     if (!this.state.analyseComplete) {
-      console.log('start loading');
       getImageObj(this.props.src || '')
         .then( imageObj => {
 
