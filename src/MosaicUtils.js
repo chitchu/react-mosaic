@@ -1,18 +1,18 @@
-import { spawn } from 'threads';
+import {spawn} from 'threads';
 
 const getRowColumnIterator = () => spawn(({columns, rows}, done) => {
-  let rowIndex = -1 , colIndex = -1, index = 0;
-  while(rowIndex++ !== rows - 1) {
+  let rowIndex = -1, colIndex = -1, index = 0;
+  while (rowIndex++ !== rows - 1) {
     colIndex = -1;
-    while(colIndex++ !== columns - 1) {
-      done({type:'column', index: index++});
+    while (colIndex++ !== columns - 1) {
+      done({type: 'column', index: index++});
     }
   }
 });
 
 const decimalToHex = decimal => {
   var _d = decimal.toString(16);
-  _d = (_d.length === 1) ? `0${_d}` : _d;
+  _d = _d.length === 1 ? `0${_d}` : _d;
   return _d;
 };
 
@@ -22,7 +22,7 @@ const getAverageRGB = (image, tileWidth, tileHeight) => {
   canvas.width = Math.ceil(image.width / tileWidth);
   canvas.height = Math.ceil(image.height / tileHeight);
   ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-  return ctx.getImageData(0,0, canvas.width, canvas.height).data;
+  return ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 };
 
 const getCanvasContext = (viewportWidth, viewportHeight) => {
@@ -38,21 +38,25 @@ const getImageObj = (image, callback) => {
     const imageObj = new Image();
     imageObj.onload = evt => {
       resolve(imageObj);
-    }
+    };
     imageObj.src = image;
   });
 };
 
-const countColumnsAndRows = (viewportWidth, viewportHeight, tileWidth, tileHeight) => {
-  const columns = Math.ceil(viewportWidth / tileWidth), rows = Math.ceil(viewportHeight / tileHeight);
-  return {
-    columns,
-    rows
+const countColumnsAndRows = (
+  viewportWidth,
+  viewportHeight,
+  tileWidth,
+  tileHeight
+) =>
+  {
+    const columns = Math.ceil(viewportWidth / tileWidth),
+      rows = Math.ceil(viewportHeight / tileHeight);
+    return {columns, rows};
   };
-};
 
 const getColoursFromPixel = (x, y, w, h, context) => {
-  return context.getImageData(x,y,w,h).data;
+  return context.getImageData(x, y, w, h).data;
 };
 
 export {
@@ -63,4 +67,4 @@ export {
   getColoursFromPixel,
   getAverageRGB,
   decimalToHex
-}
+};
