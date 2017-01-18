@@ -4,11 +4,18 @@ import Style from 'styled-components';
 import Mosaic from '../src/Mosaic';
 import Progress from './Progress';
 import Options from './Options';
+import StockPhoto from './stock-photo-134210163.jpg';
 
 import debounce from 'lodash/debounce';
 
 class App extends Component {
-  state = {image: '', tileSize: 12, mosaicWidth: 1024, mosaicHeight: 768};
+  state = {
+    image: StockPhoto,
+    tileSize: 12,
+    mosaicWidth: 1024,
+    mosaicHeight: 768,
+    tileRenderer: 'circleRenderer'
+  };
 
   Container = Style.div`
     position: absolute;
@@ -57,10 +64,6 @@ class App extends Component {
       mosaicWidth: window.innerWidth,
       mosaicHeight: window.innerHeight
     });
-    // starting image
-    this.fetchImage(
-      'https://drscdn.500px.org/photo/99973913/q%3D80_m%3D2000/b358f88dd9ce890b7ac34ccaefca30a4'
-    );
   }
 
   // wait 500ms after the user enter the url
