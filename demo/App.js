@@ -5,17 +5,20 @@ import Mosaic from '../src/Mosaic';
 import Progress from './Progress';
 import Options from './Options';
 import StockPhoto from './stock-photo-134210163.jpg';
+import {polygonRenderer,circleRenderer,halfToneRenderer} from './Renderers';
 
 import debounce from 'lodash/debounce';
 
 class App extends Component {
   state = {
     image: StockPhoto,
-    tileSize: 12,
+    tileSize: 8,
     mosaicWidth: 1024,
     mosaicHeight: 768,
-    tileRenderer: 'circleRenderer'
+    tileRenderer: 'halfToneRenderer'
   };
+
+  renderers = {polygonRenderer, circleRenderer, halfToneRenderer};
 
   Container = Style.div`
     position: absolute;
@@ -95,24 +98,6 @@ class App extends Component {
     }
   };
 
-  // Render an alternating triangle
-  polygonRenderer = ({x, y, tileSize, key, ...rest}) => (
-    <polygon
-      key={key}
-      points={
-        key % 2
-          ? `${x},${y} ${x + tileSize},${y} ${x + tileSize / 2},${y + tileSize}`
-          : `${x},${y + tileSize} ${x + tileSize / 2},${y} ${x + tileSize},${y +
-            tileSize}`
-      }
-      {...rest}
-    />
-  );
-
-  circleRenderer = ({x, y, tileSize, ...rest}) => (
-    <circle cx={x} cy={y} r={tileSize / 2} {...rest} />
-  );
-
   handleOptionsChange = ({tileSize, selectedRenderer}) => {
     this.setState({tileSize: tileSize, tileRenderer: selectedRenderer});
   };
@@ -139,7 +124,7 @@ class App extends Component {
         <Options
           onChange={this.handleOptionsChange}
           tileSize={this.state.tileSize}
-          renderers={['circleRenderer', 'polygonRenderer']}
+          renderers={Object.keys(this.renderers)}
         />
         <this.Input
           type="text"
@@ -152,7 +137,7 @@ class App extends Component {
           tileSize={this.state.tileSize}
           width={this.state.mosaicWidth}
           height={this.state.mosaicHeight}
-          tileRenderer={this[this.state.tileRenderer] || null}
+          tileRenderer={this.renderers[this.state.tileRenderer] || null}
           onProgress={this.handleProgress}
           style={{position: 'absolute', zIndex: -1, left: 0, top: 0}}
         />

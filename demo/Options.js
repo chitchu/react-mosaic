@@ -110,7 +110,11 @@ class Options extends Component {
             >
               <option value="default">Square (default)</option>
               {this.props.renderers.map((renderer, index) => {
-                  return <option key={index}>{renderer}</option>;
+                  return (
+                    <option key={index} value={renderer}>
+                      {renderer}
+                    </option>
+                  );
                 })}
             </this.StyledSelect>
           </this.StyledLabel>
