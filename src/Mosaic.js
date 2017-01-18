@@ -104,6 +104,7 @@ class Mosaic extends Component {
             y,
             tileSize,
             fill: `#${hex}`,
+            color: hex,
             key: index
           });
         } else {
