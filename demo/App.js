@@ -125,6 +125,7 @@ class App extends Component {
           onChange={this.handleOptionsChange}
           tileSize={this.state.tileSize}
           renderers={Object.keys(this.renderers)}
+          selectedRenderer={this.state.tileRenderer}
         />
         <this.Input
           type="text"
