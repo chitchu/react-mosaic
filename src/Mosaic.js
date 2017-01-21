@@ -1,4 +1,4 @@
-import React, {Component,PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {
   getRowColumnIterator,
   getCanvasContext,
@@ -53,16 +53,40 @@ class Mosaic extends Component {
           this.props.tileSize
         );
 
+        const {tileSize} = this.props;
+
         const iterateRowColumns = getRowColumnIterator();
 
+        // See: Threads
         iterateRowColumns
           .send({columns, rows})
           .on('message', ({type, index}) => {
-            tileList.push(
-              `${decimalToHex(avgColours[index * 4])}${decimalToHex(
-                avgColours[index * 4 + 1]
-              )}${decimalToHex(avgColours[index * 4 + 2])}`
-            );
+            const x = (index >= columns ? index % columns : index) * tileSize;
+            const y = Math.floor(index / columns) * tileSize;
+            const hex = `${decimalToHex(avgColours[index * 4])}${decimalToHex(
+              avgColours[index * 4 + 1]
+            )}${decimalToHex(avgColours[index * 4 + 2])}`;
+            const tile = this.props.tileRenderer &&
+              typeof this.props.tileRenderer === 'function'
+              ? this.props.tileRenderer({
+                x,
+                y,
+                tileSize,
+                fill: `#${hex}`,
+                color: hex,
+                key: index
+              })
+              : <rect
+                x={x}
+                y={y}
+                key={index}
+                width={tileSize}
+                height={tileSize}
+                fill={`#${hex}`}
+              />;
+
+            tileList.push(tile);
+
             if (typeof this.props.onProgress === 'function') {
               this.props.onProgress({
                 total: rows * columns,
@@ -86,41 +110,7 @@ class Mosaic extends Component {
   }
 
   render() {
-    const {tileSize, width, height} = this.props;
-    if (tileSize <= 1) {
-      throw new Error('tileSize must be greater than 1.');
-    }
-    const {columns} = this.state;
-    const _tiles = this.state.analyseComplete
-      ? this.state.tileList.map((hex, index) => {
-        const x = (index >= columns ? index % columns : index) * tileSize;
-        const y = Math.floor(index / columns) * tileSize;
-        if (
-          this.props.tileRenderer &&
-            typeof this.props.tileRenderer === 'function'
-        ) {
-          return this.props.tileRenderer({
-            x,
-            y,
-            tileSize,
-            fill: `#${hex}`,
-            color: hex,
-            key: index
-          });
-        } else {
-          return (
-            <rect
-              x={x}
-              y={y}
-              key={index}
-              width={tileSize}
-              height={tileSize}
-              fill={`#${hex}`}
-            />
-          );
-        }
-      })
-      : '';
+    const {width, height} = this.props;
     return (
       <svg
         width={width}
@@ -129,7 +119,7 @@ class Mosaic extends Component {
         xmlns="http://www.w3.org/2000/svg"
         style={this.props.style}
       >
-        {_tiles}
+        {this.state.analyseComplete ? this.state.tileList : ''}
       </svg>
     );
   }
