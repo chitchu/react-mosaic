@@ -17,7 +17,6 @@ class Progress extends Component {
     top: 0;
     height: 2px;
     background-color: #337ab7;
-    transition: all 0.4s ease-in-out;
   `;
   render() {
     return <this.Bar style={{width: `${this.state.progress}%`}} />;
