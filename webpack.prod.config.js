@@ -19,13 +19,7 @@ const config = {
       {test: /\.js$/, exclude: /node_modules/, use: 'babel-loader'},
       {test: /\.css$/, use: ['style-loader', 'css-loader']},
       {test: /\.(jpe?g|png|gif)$/i, use: 'base64-image-loader'},
-      {
-        test: /\.svg$/i,
-        loaders: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
-        ]
-      }
+      {test: /\.svg$/i, loaders: ['file-loader', 'image-webpack-loader']}
     ]
   },
   plugins: [
@@ -50,7 +44,7 @@ const config = {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendor', 'assets']
+        names: ['vendor', 'assets', 'manifest']
     })
   ]
 };
