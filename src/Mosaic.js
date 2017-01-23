@@ -95,14 +95,10 @@ class Mosaic extends Component {
               });
             }
             if (tileList.length === rows * columns) {
-              this.setState({
-                analyseComplete: true,
-                tileList,
-                columns,
-                rows,
-                width,
-                height
-              });
+              this.setState(
+                {analyseComplete: true, tileList, columns, rows, width, height},
+                this.props.onComplete
+              );
               iterateRowColumns.kill();
             }
           });

@@ -4,7 +4,7 @@ import Style from 'styled-components';
 import Mosaic from '../src/Mosaic';
 import Progress from './Progress';
 import Options from './Options';
-import StockPhoto from './stock-photo-134210163.jpg';
+import StockPhoto from './stock-photo.jpg';
 import {polygonRenderer, circleRenderer, halfToneRenderer} from './Renderers';
 
 import debounce from 'lodash/debounce';
