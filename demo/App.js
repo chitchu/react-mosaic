@@ -5,7 +5,7 @@ import Mosaic from '../src/Mosaic';
 import Progress from './Progress';
 import Options from './Options';
 import StockPhoto from './stock-photo-134210163.jpg';
-import {polygonRenderer,circleRenderer,halfToneRenderer} from './Renderers';
+import {polygonRenderer, circleRenderer, halfToneRenderer} from './Renderers';
 
 import debounce from 'lodash/debounce';
 
@@ -107,13 +107,12 @@ class App extends Component {
       this.handler = handler;
     },
     fire(args) {
-      if (this.handler)
-        this.handler(args);
+      if (this.handler) this.handler(args);
     }
   };
 
   handleProgress = ({current, total}) => {
-    const progress = current / total * 100;
+    const progress = Math.round(current / total * 100);
     this.emitter.fire({progress});
   };
 

@@ -97,11 +97,11 @@ class Mosaic extends Component {
             if (tileList.length === rows * columns) {
               this.setState({
                 analyseComplete: true,
-                tileList: tileList,
+                tileList,
                 columns,
                 rows,
-                width: width,
-                height: height
+                width,
+                height
               });
               iterateRowColumns.kill();
             }
@@ -120,7 +120,7 @@ class Mosaic extends Component {
         xmlns="http://www.w3.org/2000/svg"
         style={this.props.style}
       >
-        {this.state.analyseComplete ? this.state.tileList : ''}
+        {this.state.tileList}
       </svg>
     );
   }

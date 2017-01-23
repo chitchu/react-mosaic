@@ -6,7 +6,9 @@ class Progress extends Component {
 
   componentDidMount() {
     this.props.emitter.on(({progress}) => {
-      this.setState({progress: progress});
+      if (this.state.progress !== progress) {
+        this.setState({progress: progress});
+      }
     });
   }
   Bar = Style.div`
@@ -15,11 +17,10 @@ class Progress extends Component {
     top: 0;
     height: 2px;
     background-color: #337ab7;
+    transition: all 0.4s ease-in-out;
   `;
   render() {
-    return this.state.progress !== 100
-      ? <this.Bar style={{width: `${this.state.progress}%`}} />
-      : <div />;
+    return <this.Bar style={{width: `${this.state.progress}%`}} />;
   }
 }
 
