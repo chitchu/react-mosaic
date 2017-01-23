@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-// const webpack = require('webpack');
 const config = {
   entry: {app: [path.resolve(process.cwd(), `demo/index.js`)]},
   output: {
