@@ -66,13 +66,14 @@ class Mosaic extends Component {
             const hex = `${decimalToHex(avgColours[index * 4])}${decimalToHex(
               avgColours[index * 4 + 1]
             )}${decimalToHex(avgColours[index * 4 + 2])}`;
+            const fill = `#${hex}`;
             const tile = this.props.tileRenderer &&
               typeof this.props.tileRenderer === 'function'
               ? this.props.tileRenderer({
                 x,
                 y,
                 tileSize,
-                fill: `#${hex}`,
+                fill,
                 color: hex,
                 key: index
               })
@@ -82,7 +83,7 @@ class Mosaic extends Component {
                 key={index}
                 width={tileSize}
                 height={tileSize}
-                fill={`#${hex}`}
+                fill={fill}
               />;
 
             tileList.push(tile);
