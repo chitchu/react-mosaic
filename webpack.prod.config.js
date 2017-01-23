@@ -1,12 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const package = require('./package.json');
 
 const config = {
-  entry: {app: [path.resolve(process.cwd(), `demo/index.js`)]},
+  entry: {
+    app: [path.resolve(process.cwd(), `demo/index.js`)],
+    vendor: ['react', 'react-dom', 'styled-components', 'lodash/debounce', 'threads']
+  },
   output: {
-    path: path.resolve(process.cwd(), `gh-page`),
     filename: `[name].[chunkhash:8].js`,
+    path: path.resolve(process.cwd(), `gh-page`),
     pathinfo: false
   },
   module: {
@@ -43,7 +47,10 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': {NODE_ENV: JSON.stringify('production')}
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor'
+    })
   ]
 };
 module.exports = config;
