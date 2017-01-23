@@ -6,7 +6,8 @@ const package = require('./package.json');
 const config = {
   entry: {
     app: [path.resolve(process.cwd(), `demo/index.js`)],
-    vendor: ['react', 'react-dom', 'styled-components', 'lodash/debounce', 'threads']
+    vendor: ['react', 'react-dom', 'styled-components', 'lodash/debounce', 'threads'],
+    assets: [path.join(__dirname, 'demo', 'stock-photo.jpg')]
   },
   output: {
     filename: `[name].[chunkhash:8].js`,
@@ -49,7 +50,7 @@ const config = {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor'
+        names: ['vendor', 'assets']
     })
   ]
 };
