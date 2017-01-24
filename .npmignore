@@ -1,5 +1,11 @@
-__tests__;
-demo;
-gh - page;
-src;
-webpack.prod.config.js;
+__tests__
+demo
+gh-page
+src
+webpack.prod.config.js
+.babelrc
+.gitignore
+.npmignore
+.nvmrc
+.travis.yml
+yarn.lock
