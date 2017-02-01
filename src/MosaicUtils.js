@@ -1,11 +1,11 @@
-import {spawn} from 'threads';
+import { spawn } from 'threads';
 
-const getRowColumnIterator = () => spawn(({columns, rows}, done) => {
+const getRowColumnIterator = () => spawn(({ columns, rows }, done) => {
   let rowIndex = -1, colIndex = -1, index = 0;
   while (rowIndex++ !== rows - 1) {
     colIndex = -1;
     while (colIndex++ !== columns - 1) {
-      done({type: 'column', index: index++});
+      done({ type: 'column', index: index++ });
     }
   }
 });
@@ -52,7 +52,7 @@ const countColumnsAndRows = (
   {
     const columns = Math.ceil(viewportWidth / tileWidth),
       rows = Math.ceil(viewportHeight / tileHeight);
-    return {columns, rows};
+    return { columns, rows };
   };
 
 const getColoursFromPixel = (x, y, w, h, context) => {

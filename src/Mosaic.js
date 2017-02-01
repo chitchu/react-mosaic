@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   getRowColumnIterator,
   getCanvasContext,
@@ -28,15 +28,15 @@ class Mosaic extends Component {
   };
 
   componentWillReceiveProps() {
-    this.setState({analyseComplete: false, tileList: []});
+    this.setState({ analyseComplete: false, tileList: [] });
   }
 
   componentDidUpdate() {
     if (!this.state.analyseComplete) {
       getImageObj(this.props.src || '').then(imageObj => {
-        const {width, height} = imageObj;
+        const { width, height } = imageObj;
         const context = getCanvasContext(width, height);
-        const {columns, rows} = countColumnsAndRows(
+        const { columns, rows } = countColumnsAndRows(
           width,
           height,
           this.props.tileSize,
@@ -53,14 +53,14 @@ class Mosaic extends Component {
           this.props.tileSize
         );
 
-        const {tileSize} = this.props;
+        const { tileSize } = this.props;
 
         const iterateRowColumns = getRowColumnIterator();
 
         // See: Threads
         iterateRowColumns
-          .send({columns, rows})
-          .on('message', ({type, index}) => {
+          .send({ columns, rows })
+          .on('message', ({ type, index }) => {
             const x = (index >= columns ? index % columns : index) * tileSize;
             const y = Math.floor(index / columns) * tileSize;
             const hex = `${decimalToHex(avgColours[index * 4])}${decimalToHex(
@@ -96,7 +96,14 @@ class Mosaic extends Component {
             }
             if (tileList.length === rows * columns) {
               this.setState(
-                {analyseComplete: true, tileList, columns, rows, width, height},
+                {
+                  analyseComplete: true,
+                  tileList,
+                  columns,
+                  rows,
+                  width,
+                  height
+                },
                 this.props.onComplete
               );
               iterateRowColumns.kill();
@@ -107,7 +114,7 @@ class Mosaic extends Component {
   }
 
   render() {
-    const {width, height} = this.props;
+    const { width, height } = this.props;
     return (
       <svg
         width={width}
@@ -122,4 +129,4 @@ class Mosaic extends Component {
   }
 }
 
-export {Mosaic as default};
+export { Mosaic as default };
