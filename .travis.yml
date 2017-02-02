@@ -1,8 +1,4 @@
 language: node_js
-before_script:
-  - git config --global user.email "chitchu@gmail.com"
-  - git config --global user.name "Travis-CI"
-after_success: yarn ci-deploy
 deploy:
   provider: npm
   email: chitchu@gmail.com

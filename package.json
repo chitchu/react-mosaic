@@ -60,9 +60,7 @@
     "demo": "webpack-dev-server --config demo/webpack.config.js",
     "build": "rm -rf gh-page && mkdir gh-page && NODE_ENV=production webpack --optimize-minimize --config webpack.prod.config.js",
     "prepublish": "mkdir -p dist && babel src --out-dir dist",
-    "test": "jest",
-    "deploy": "rm -rf gh-page && mkdir gh-page && NODE_ENV=production webpack --optimize-minimize --config webpack.prod.config.js && gh-pages -d gh-page",
-    "ci-deploy": "rm -rf gh-page && mkdir gh-page && NODE_ENV=production webpack --optimize-minimize --config webpack.prod.config.js && gh-pages --repo https://$GH_TOKEN@github.com/chitchu/react-mosaic.git -d dist -d gh-page --silent"
+    "test": "jest"
   },
   "main": "dist/Mosaic.js"
 }
