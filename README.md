@@ -1,5 +1,7 @@
 # react-mosaic
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/chitchu/react-mosaic.svg)](https://greenkeeper.io/)
+
 Generate mosaic images in react.
 
 [![Build Status](https://travis-ci.org/chitchu/react-mosaic.svg?branch=master)](https://travis-ci.org/chitchu/react-mosaic)
