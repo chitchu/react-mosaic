@@ -1,11 +1,12 @@
 __tests__
-demo
-gh-page
+dev
 src
-webpack.prod.config.js
+webpack.config.js
 .babelrc
 .gitignore
+.eslintrc
 .npmignore
 .nvmrc
 .travis.yml
+.vscode
 yarn.lock
