@@ -47,7 +47,7 @@
   "dependencies": {
     "prop-types": "^15.5.6",
     "react": "^15.5.3",
-    "threads": "^0.7.2"
+    "threads": "^0.8.0"
   },
   "scripts": {
     "dev": "webpack-dev-server -d --config webpack.config.js --open",
