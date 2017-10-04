@@ -27,6 +27,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-es2016": "^6.22.0",
     "babel-preset-react": "^6.23.0",
@@ -39,14 +40,20 @@
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.2.0",
     "jest": "^19.0.2",
+    "prop-types": "^15.5.10",
+    "react": "16",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.5.3",
+    "react-dom": "16",
+    "threads": "^0.8.0",
     "webpack": "2.4.0",
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
+    "threads": "^0.8.0"
+  },
+  "peerDependencies": {
+    "prop-types": "*",
+    "react": "*",
     "threads": "^0.8.0"
   },
   "scripts": {

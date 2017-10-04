@@ -1,8 +1,11 @@
 {
   "presets": [
-    "babel-preset-es2015",
-    "babel-preset-es2016",
-    "babel-preset-react"
+    "babel-preset-react",
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      }
+    }]
   ],
   "plugins": [
     "babel-plugin-syntax-trailing-function-commas",
