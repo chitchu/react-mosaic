@@ -1,7 +1,8 @@
 {
   "name": "react-mosaic",
-  "version": "0.0.16",
-  "description": "React component that generates mosaic from the given image source.",
+  "version": "0.0.18",
+  "description":
+    "React component that generates mosaic from the given image source.",
   "author": "Vicente Jr Yuchitcho",
   "license": "MIT",
   "homepage": "https://github.com/chitchu/react-mosaic",
@@ -10,12 +11,7 @@
     "url": "git@github.com:chitchu/react-mosaic.git"
   },
   "bugs": "https://github.com/chitchu/react-mosaic/issues",
-  "keywords": [
-    "react",
-    "react-component",
-    "components",
-    "mosaic"
-  ],
+  "keywords": ["react", "react-component", "components", "mosaic"],
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
@@ -58,7 +54,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server -d --config webpack.config.js --open",
-    "build": "rm -rf gh-page && mkdir gh-page && NODE_ENV=production webpack --optimize-minimize --config webpack.prod.config.js",
+    "build":
+      "rm -rf gh-page && mkdir gh-page && NODE_ENV=production webpack --optimize-minimize --config webpack.prod.config.js",
     "prepublish": "mkdir -p dist && babel src --out-dir dist",
     "test": "jest"
   },
