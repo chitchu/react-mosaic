@@ -52,7 +52,7 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
-    "threads": "^0.8.0"
+    "threads": "^0.9.0"
   },
   "peerDependencies": {
     "prop-types": "*",
