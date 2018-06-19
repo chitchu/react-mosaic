@@ -1,6 +1,6 @@
 {
   "name": "react-mosaic",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "React component that generates mosaic from the given image source.",
   "author": "Vicente Jr Yuchitcho",
   "license": "MIT",
@@ -52,12 +52,11 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
+    "prop-types": "^15.6.0",
     "threads": "^0.9.0"
   },
   "peerDependencies": {
-    "prop-types": "*",
-    "react": "*",
-    "threads": "^0.8.0"
+    "react": "*"
   },
   "scripts": {
     "dev": "webpack-dev-server -d --config webpack.config.js --open",
