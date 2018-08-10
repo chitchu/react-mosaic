@@ -1,0 +1,5 @@
+{
+  "setupFiles": ["raf/polyfill"],
+  "bail": true,
+  "verbose": true
+}

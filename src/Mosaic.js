@@ -7,7 +7,7 @@ import {
   getImageObj,
   countColumnsAndRows,
   getAverageRGB,
-  decimalToHex
+  decimalToHex,
 } from './MosaicUtils';
 
 class Mosaic extends Component {
@@ -17,7 +17,7 @@ class Mosaic extends Component {
     columns: 0,
     rows: 0,
     width: 0,
-    height: 0
+    height: 0,
   };
 
   static propTypes = {
@@ -26,7 +26,7 @@ class Mosaic extends Component {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     onProgress: PropTypes.func,
-    tileRenderer: PropTypes.func
+    tileRenderer: PropTypes.func,
   };
 
   componentWillReceiveProps() {
@@ -60,56 +60,60 @@ class Mosaic extends Component {
         const iterateRowColumns = getRowColumnIterator();
 
         // See: Threads
-        iterateRowColumns.send({ columns, rows }).on('message', ({
-          type,
-          index
-        }) => {
-          const x = (index >= columns ? index % columns : index) * tileSize;
-          const y = Math.floor(index / columns) * tileSize;
-          const hex = `${decimalToHex(avgColours[index * 4])}${decimalToHex(avgColours[index * 4 + 1])}${decimalToHex(avgColours[index * 4 + 2])}`;
-          const fill = `#${hex}`;
-          const tile = this.props.tileRenderer &&
-            typeof this.props.tileRenderer === 'function'
-            ? this.props.tileRenderer({
-                x,
-                y,
-                tileSize,
-                fill,
-                color: hex,
-                key: index
-              })
-            : <rect
-                x={x}
-                y={y}
-                key={index}
-                width={tileSize}
-                height={tileSize}
-                fill={fill}
-              />;
+        iterateRowColumns
+          .send({ columns, rows })
+          .on('message', ({ type, index }) => {
+            const x = (index >= columns ? index % columns : index) * tileSize;
+            const y = Math.floor(index / columns) * tileSize;
+            const hex = `${decimalToHex(avgColours[index * 4])}${decimalToHex(
+              avgColours[index * 4 + 1]
+            )}${decimalToHex(avgColours[index * 4 + 2])}`;
+            const fill = `#${hex}`;
+            const tile =
+              this.props.tileRenderer &&
+              typeof this.props.tileRenderer === 'function' ? (
+                this.props.tileRenderer({
+                  x,
+                  y,
+                  tileSize,
+                  fill,
+                  color: hex,
+                  key: index,
+                })
+              ) : (
+                <rect
+                  x={x}
+                  y={y}
+                  key={index}
+                  width={tileSize}
+                  height={tileSize}
+                  fill={fill}
+                />
+              );
 
-          tileList.push(tile);
+            tileList.push(tile);
 
-          if (typeof this.props.onProgress === 'function') {
-            this.props.onProgress({
-              total: rows * columns,
-              current: tileList.length
-            });
-          }
-          if (tileList.length === rows * columns) {
-            this.setState(
-              {
-                analyseComplete: true,
-                tileList,
-                columns,
-                rows,
-                width,
-                height
-              },
-              this.props.onComplete
-            );
-            iterateRowColumns.kill();
-          }
-        });
+            if (typeof this.props.onProgress === 'function') {
+              this.props.onProgress({
+                total: rows * columns,
+                current: tileList.length,
+              });
+            }
+            if (tileList.length === rows * columns) {
+              this.setState(
+                {
+                  analyseComplete: true,
+                  tileList,
+                  columns,
+                  rows,
+                  width,
+                  height,
+                },
+                this.props.onComplete
+              );
+              iterateRowColumns.kill();
+            }
+          });
       });
     }
   }
