@@ -1,15 +1,17 @@
 {
   "presets": [
-    "babel-preset-react",
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions", "safari >= 7"]
+    "@babel/preset-react",
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 7"]
+        }
       }
-    }]
+    ]
   ],
   "plugins": [
     "babel-plugin-syntax-trailing-function-commas",
-    "babel-plugin-transform-class-properties",
-    "babel-plugin-transform-object-rest-spread"
+    "babel-plugin-transform-class-properties"
   ]
 }
