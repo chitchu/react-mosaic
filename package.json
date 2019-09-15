@@ -62,5 +62,8 @@
     "prepublish": "mkdir -p dist && babel src --out-dir dist",
     "test": "jest --config jest.config.json"
   },
-  "main": "dist/Mosaic.js"
+  "main": "dist/Mosaic.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@chitchu"
+  }
 }
